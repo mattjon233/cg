@@ -1,0 +1,44 @@
+/// perspectiva
+
+# original
+Ponto origem(0, 4, 0, 1);
+Ponto lookat(0, 4, -1, 1);
+Ponto viewup(0, 5, 0, 1);
+
+
+# de cima
+Ponto origem(0, 15, 5, 1);
+Ponto lookat(0, 15, -1, 1);
+Ponto viewup(0, 16, 0, 1);
+
+
+# de costas
+Ponto origem(0, 4, -50, 1);
+Ponto lookat(0, 4, -1, 1);
+Ponto viewup(0, 5, 0, 1);
+
+
+# camera vai para direita (move lateralmente)
+Ponto origem(7, 4, 0, 1);
+Ponto lookat(7, 4, -1, 1);
+Ponto viewup(7, 5, 0, 1);
+
+
+# camera vai para esquerda (move lateralmente)
+Ponto origem(-10, 4, 0, 1);
+Ponto lookat(-10, 4, -1, 1);
+Ponto viewup(-10, 5, 0, 1);
+
+
+# camera afasta e levanta
+Ponto origem(0, 8, 0, 1);
+Ponto lookat(0, 8, -1, 1);
+Ponto viewup(0, 9, 0, 1);
+
+
+/// ortogonal
+
+# cabeca pra baixo
+Ponto origem(0, 4, 0, 1);
+Ponto lookat(0, 4, -1, 1);
+Ponto viewup(0, 0, 0, 1);
