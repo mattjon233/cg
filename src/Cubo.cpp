@@ -25,13 +25,12 @@ bool Cubo::intersectar(const Raio& r,  float t_min, float t_max, PontoColisao& p
         }
     }
 
-    return intersect;
-}
+    if(!(ptcol.t_int > t_min && ptcol.t_int < t_max)) return false;
+    
+    ptcol.dr = r.direcao();
+    ptcol.m = 1;
 
-bool Cubo::backface_culling(const Raio& r) const {
-    /* se normal esta na mesma direcao a direcao do raio, a face esta de costa ao observador, e portanto, nao eh a 'vencedora' 
-       se < 0 entao eh vencedora; caso contrario, nao eh. */
-    return (produto_escalar(_normal, r.direcao()) < 0);
+    return intersect;
 }
 
 void Cubo::atualizar_pontos(const Matriz &MT) {
