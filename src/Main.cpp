@@ -108,8 +108,8 @@ void construir_arvore_2(Cenario &world) {
 }
 
 //dimensoes da tela, adaptar com a quantidade de pixels da imagem usada
-float windowWidth  = 400.0;
-float windowHeight = 400.0;
+float windowWidth  = 600.0;
+float windowHeight = 600.0;
 Cor *canvas;
 
 void display() {
@@ -161,9 +161,13 @@ int main(int argc, char **argv) {
     // no eixo z = sobre o proprio eixo (nao muda nada)
     // viewup
 
-    Ponto origem(0, 4, 0, 1);
-    Ponto lookat(0, 4, -1, 1);
-    Ponto viewup(0, 5, 3, 1);
+
+    int x = 0;
+    int y = 4;
+
+    Ponto origem(x, y, 0, 1);
+    Ponto lookat(x, y, -1, 1);
+    Ponto viewup(x, y+1, 3, 1);
 
 
     Camera cam(origem, lookat, viewup, janela_pts, windowWidth, windowHeight);
@@ -179,8 +183,10 @@ int main(int argc, char **argv) {
     construir_arvore_2(world);
     shared_ptr<Esfera> lua = make_shared<Esfera>(Ponto(-150.0, 250, -600, 1), 50, Cor(253,253,150));
     world.add(lua);
-    shared_ptr<Cubo> presente = make_shared<Cubo>(Ponto(-5.0, 1, -15.0), 5,5,5);
-    world.add(presente);
+    shared_ptr<Cubo> presente_1 = make_shared<Cubo>(Ponto(-6.0, 1, -18.5), 1.3,1.3,1.3);
+    world.add(presente_1);
+    shared_ptr<Cubo> presente_2 = make_shared<Cubo>(Ponto(-10.0, 1, -17.5), 1.3,1.3,1.3);
+    world.add(presente_2);
 
     // -------------------------------------- LUZES -------------------------------------- //
 

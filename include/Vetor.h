@@ -6,17 +6,6 @@
 
 using namespace std;
 
-
-/**
- * Coordenadas possuem 4 componentes. Na cood de câmera, temos um vetor:
- *  Ic = {e0, e1, e2, 1} = C0 + Xe0 + Ye1 + Ze2
- *  Jc = {e0, e1, e2, 1} = C0 + Xe0 + Ye1 + Ze2
- *  Kc = {e0, e1, e2, 1} = C0 + Xe0 + Ye1 + Ze2
- *  com {X, Y, Z} a base ortonognal desse plano e C0 um ponto
- * Para coordenadas do mundo, temos:
- *  Cm = 
-*/
-
 class Vetor {
     public:
         Vetor() : e{0, 0, 0, 0} {}
@@ -64,15 +53,6 @@ class Vetor {
                      + e[3]*e[3];
         }
 
-        /*
-        static Vetor random() {
-            return Vetor(random_double(), random_double(), random_double());
-        }
-
-        static Vetor random(double min, double max) {
-            return Vetor(random_double(min, max), random_double(min, max), random_double(min,max));
-        }
-        */
         bool proximo_de_zero() const {
             return     (fabs(e[0]) < 1e-8)
                     && (fabs(e[1]) < 1e-8)
@@ -86,7 +66,6 @@ class Vetor {
 
 using Ponto = Vetor;
 using Cor = Vetor;
-// using Pixel = Vetor;
 
 ostream& operator<<(ostream &out, const Vetor &v);
 
