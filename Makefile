@@ -15,4 +15,3 @@ src/%.o: src/%.cpp
 restart:
 	-rm main
 	-rm src/*.o
-	-rm img/*.ppm

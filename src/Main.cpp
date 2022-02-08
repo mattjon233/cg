@@ -17,6 +17,7 @@
 #include "LuzPontual.h"
 #include "LuzSpot.h"
 #include "Cluster.h"
+#include "Cubo.h"
 
 //includes do GL
 #include <GL/glew.h>
@@ -178,6 +179,8 @@ int main(int argc, char **argv) {
     construir_arvore_2(world);
     shared_ptr<Esfera> lua = make_shared<Esfera>(Ponto(-150.0, 250, -600, 1), 50, Cor(253,253,150));
     world.add(lua);
+    shared_ptr<Cubo> presente = make_shared<Cubo>(Ponto(-9.0, 1.0, -15.0), 5,5,5, Cor(155,155,155));
+    world.add(presente);
 
     // -------------------------------------- LUZES -------------------------------------- //
 
@@ -206,7 +209,6 @@ int main(int argc, char **argv) {
     world.atualizar_pontos(cam.coord_MpC());
 
     // dia ou noite (255,255,255) ou (1,1,1)
-    // noite = sem sombra
     Cor bg(0, 0, 0);
 
     Render render(path_abs, cmd, cam);
