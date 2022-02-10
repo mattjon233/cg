@@ -108,8 +108,8 @@ void construir_arvore_2(Cenario &world) {
 }
 
 //dimensoes da tela, adaptar com a quantidade de pixels da imagem usada
-float windowWidth  = 600.0;
-float windowHeight = 600.0;
+float windowWidth  = 400.0;
+float windowHeight = 400.0;
 Cor *canvas;
 
 void display() {
@@ -122,14 +122,14 @@ void display() {
 
 // 0,0 = arvore 3d, chao 2d, perto (ortogonal)
 // 1,0 = cenario 3d frente (perspectiva)
-// 1,1 = cenario 3d lateral 
-int tipo = 1;
-int girar = 0;
+int camera_tipo = 1;
 
 int main(int argc, char **argv) {
-    /* configuracao de arquivo */
-    string path_abs = "img/img_"+data_atual()+".ppm";
-    string cmd = "eog "+path_abs;
+    
+    // -------------------------------------- EQUIPE -------------------------------------- //
+
+    // Matthews Harnifer Jones Severino Vasconcelos - 434055
+    // Jéssica Xavier de Sousa - 405090
 
     // -------------------------------------- CÂMERA -------------------------------------- //
 
@@ -140,26 +140,10 @@ int main(int argc, char **argv) {
     glutCreateWindow("Trabalho Final - CG");
     glutDisplayFunc(display);
 
-    Ponto janela_pts;
+    Ponto window_pts;
     // y,x = mexer no janela pts = achata a visão 
-    if (tipo == 1) janela_pts = Ponto(0.75, 0.75, -0.75, 1);
-    else  janela_pts = Ponto(25.0, 25.0, -1.0, 1);
-
-    // caso mexer y = mexer y no lookat (iguais) e y no view up (+1) e MOVE A CAMERA
-
-    // eixo x = rotaciona sobre o proprio eixo
-    // eixo z = afasta (positivo) (0) ou inverte e aproxima (negativo) a câmera do cenário (-50) 
-    // eixo y = subir camera para y=4 para os objetos ficarem em (0,0)
-    // origem
-
-    // no eixo x, inclina a câmera 
-    // no eixo y, zoom
-    // lookat
-
-    // no eixo x, rotaciona a camera
-    // no eixo y, zoom
-    // no eixo z = sobre o proprio eixo (nao muda nada)
-    // viewup
+    if (camera_tipo == 1) window_pts = Ponto(1.2, 1.2, -1, 1);
+    else  window_pts = Ponto(23, 23, -1, 1);
 
 
     int x = 0;
@@ -167,10 +151,10 @@ int main(int argc, char **argv) {
 
     Ponto origem(x, y, 0, 1);
     Ponto lookat(x, y, -1, 1);
-    Ponto viewup(x, y+1, 3, 1);
+    Ponto viewup(x, y+1, 0, 1);
 
 
-    Camera cam(origem, lookat, viewup, janela_pts, windowWidth, windowHeight);
+    Camera cam(origem, lookat, viewup, window_pts, windowWidth, windowHeight);
 
     // -------------------------------------- CRIAÇÃO DO CENÁRIO -------------------------------------- //
 
@@ -203,22 +187,23 @@ int main(int argc, char **argv) {
     // luz da nave et
     luzes.add(make_shared<LuzSpot>(Ponto(9, 10, -20.0, 1), Vetor(0, -1, 0), 0.001, 45, Cor(0.25, 0.25, 0.25)));
 
-    if (girar == 1) {
+    int camera_girar = 0;
+    if (camera_girar == 1) {
         world.atualizar_pontos(matriz_rotacao(-45, 'y'));
         world.atualizar_pontos(matriz_translacao(Ponto(-15, 0, -5, 1)));
         luzes.atualizar_posicao(matriz_rotacao(-45, 'y'));
         luzes.atualizar_posicao(matriz_translacao(Ponto(-15, 0, -5, 1)));
-    }     
+    }
 
-    /* atualizando de coord de mundo para coor de camera */
+    // atualizando de coordenadas de mundo para coordenadas de camera
     luzes.atualizar_posicao(cam.coord_MpC());
     world.atualizar_pontos(cam.coord_MpC());
 
     // fundo
     Cor bg(0, 0, 0);
 
-    Render render(path_abs, cmd, cam);
-    if (tipo == 1) render.tirar_fotografia(world, luzes, bg, "perspectiva");
+    Render render(cam);
+    if (camera_tipo == 1) render.tirar_fotografia(world, luzes, bg, "perspectiva");
     else render.tirar_fotografia(world, luzes, bg, "ortografica");
 
     // cria o framebuffer do opengl para alocar os pixels
@@ -234,6 +219,7 @@ int main(int argc, char **argv) {
         }
     }
 
+    // loop principal do openGL
     glutMainLoop();
 
     return 0;

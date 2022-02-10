@@ -12,15 +12,9 @@
 
 class Render {
     public:
-        Render(string path_abs, string cmd, Camera& cam) : _path_abs(path_abs), _cmd(cmd), _cam(cam) {}
+        Render(Camera& cam) : _cam(cam) {}
 
         void tirar_fotografia(Cenario world, Luzes luzes, Cor background, string projecao);
-
-        void escrever_arquivo(ofstream& arq, Cor p);
-
-        void conf_arquivo(ofstream& arq, int largura, int altura);
-
-        void executar_arquivo(string cmd);
 
         void obter_cmax(Cor& c);
 

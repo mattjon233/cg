@@ -4,8 +4,6 @@ void Render::tirar_fotografia(Cenario world, Luzes luzes, Cor background, string
     auto largura = _cam.largura_imagem();
     auto altura = _cam.altura_imagem();
     auto janela_pts = _cam.janela_pontos();
-    // auto origem_cam = _cam.origem();
-    // auto ki_cam = _cam.eixo_k()*(-1);
 
     float Px, Py, Pz = janela_pts.z();
     
@@ -18,8 +16,6 @@ void Render::tirar_fotografia(Cenario world, Luzes luzes, Cor background, string
     auto delta_y = (y_max-y_min)/altura;
 
     MC = alocar(altura, largura);
-
-    // auto MC = alocar(altura, largura);
 
     background = background * (1.0/255.0);
     _c_max = -1;
@@ -49,31 +45,7 @@ void Render::tirar_fotografia(Cenario world, Luzes luzes, Cor background, string
             obter_cmax(MC[h][w]);
         }
     }
-
-    // ofstream arq(_path_abs);
-
-    // conf_arquivo(arq, largura, altura);
-
-    // for (int j = altura-1; j >= 0; --j) for (int i = 0; i < largura; ++i) escrever_arquivo(arq, MC[j][i]);
-
-    // arq.close();
-    
-    // executar_arquivo(_cmd);
 }
-
-// void Render::escrever_arquivo(ofstream& arq, Cor p) {
-//     if (_c_max <= 1) arq << p.x() << ' ' << p.y() << ' ' << p.z() << '\n';
-//     else arq << static_cast<int>( fabs(p.x()/_c_max*255) ) << ' ' << static_cast<int>( fabs(p.y()/_c_max*255) ) << ' ' << static_cast<int>( fabs(p.z()/_c_max*255) ) << '\n';
-// }
-
-// void Render::conf_arquivo(ofstream& arq, int largura, int altura) {
-//     arq << "P3\n" << largura << ' ' << altura << "\n255\n";
-// }
-
-// void Render::executar_arquivo(string cmd) {
-//     cout << "system(\""<< cmd.c_str() << "\");" << endl;
-//     system(cmd.c_str());
-// }
 
 void Render::obter_cmax(Cor& c) {
     // cout << c << '\n';
