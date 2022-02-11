@@ -80,7 +80,7 @@ void construir_arvore_natal(Cenario &world, string obj, string obj2) {
     world.add(bolinha_amarela_2);
     world.add(bolinha_amarela_3);
 
-    shared_ptr<Malha> estrela = make_shared<Malha>(obj2, Cor(94,75,0));
+    shared_ptr<Malha> estrela = make_shared<Malha>(obj2, Cor(255,255,0));
     estrela->atualizar_pontos(matriz_escala(Vetor(0.2, 0.2, 0.2)));
     estrela->atualizar_pontos(matriz_reflexao('x', 'y'));
     estrela->atualizar_pontos(matriz_translacao(Ponto(-9.0, 13.2, -20.0)));
