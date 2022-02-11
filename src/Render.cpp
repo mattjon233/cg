@@ -33,8 +33,7 @@ void Render::tirar_fotografia(Cenario world, Luzes luzes, Cor background, string
             if (strcmp(projecao.c_str(), "perspectiva") == 0)
                 raio = criar_raio_op(Ponto(0, 0, 0, 1), Ponto(Px, Py, Pz, 1));
             else 
-                raio = criar_raio_od(Ponto(Px, Py, Pz, 1), Vetor(0, 0, -1)); // _cam.eixo_k()*(-1) OBS: projecao ortogonal com defeito
-            
+                raio = criar_raio_od(Ponto(Px, Py, Pz, 1), Vetor(0, 0, -1));
             if(world.intersectar(raio, 0, INFINITO, ptcol)) {
                 luzes.iluminar(world, ptcol);
                 MC[h][w] = ptcol.cor;

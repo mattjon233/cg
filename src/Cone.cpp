@@ -72,9 +72,11 @@ bool Cone::intersectar(const Raio& r,  float t_min, float t_max, PontoColisao& p
 
     ptcol.t_int = t_int;
     ptcol.pt = r.para(t_int);
-    if (!base) ptcol.normal = vetor_unitario(_direcao - vetor_unitario(_vertice - ptcol.pt) * ca); // TODO: ajeitar
+    if (!base) ptcol.normal = vetor_unitario(_direcao - vetor_unitario(_vertice - ptcol.pt) * ca);
     else ptcol.normal = -_direcao;
     ptcol.cor = _cor;
+    // ptcol.cor_especular = _cor_difusa;
+    // ptcol.cor_difusa = _cor_especular;
     ptcol.dr = r.direcao();
     ptcol.m = 1;
 

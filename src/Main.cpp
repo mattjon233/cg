@@ -48,20 +48,21 @@ void construir_boneco_de_neve(Cenario &world) {
     shared_ptr<Esfera> cima = make_shared<Esfera>(Ponto(9.2, 5.5, -20.0, 1), 1.2, Cor(255,255,255));
     shared_ptr<Esfera> olho_esq = make_shared<Esfera>(Ponto(8.3, 5.9, -19.2, 1), 0.2, Cor(0,0,0));
     shared_ptr<Esfera> olho_dir = make_shared<Esfera>(Ponto(9.0, 5.6, -18.7, 1), 0.2, Cor(0,0,0));
-    // segundo ponto do cone = achatação (quanto maior mais achatado)
-    shared_ptr<Cone> chapeu = make_shared<Cone>(Ponto(8.9, 5.74, -19.2, 1), 1.3, Vetor(0.31, 1, -0.1), 0.75, Cor(255,165,0));    
+    shared_ptr<Cubo> cabelin = make_shared<Cubo>(Ponto(7, 6.5, -20), 1.3,1.3,1.3);
+    cabelin->atualizar_pontos(matriz_cisalhamento('x','y','x',20));
 
     world.add(baixo);
     world.add(cima);
     world.add(olho_esq);
     world.add(olho_dir);
-    world.add(chapeu);
+    world.add(cabelin);
 }
 
 void construir_arvore_natal(Cenario &world, string obj, string obj2) {
     shared_ptr<Malha> copa = make_shared<Malha>(obj, Cor(34,139,34));
     copa->atualizar_pontos(matriz_escala(Vetor(2.0, 2.0, 2.0)));
     copa->atualizar_pontos(matriz_translacao(Ponto(-9.0, 1.0, -20.0)));
+
     world.add(copa);
 
     shared_ptr<Esfera> bolinha_vermelha = make_shared<Esfera>(Ponto(-7.0, 7.0, -18.5, 1), 0.3, Cor(249,25,14));
@@ -81,6 +82,7 @@ void construir_arvore_natal(Cenario &world, string obj, string obj2) {
 
     shared_ptr<Malha> estrela = make_shared<Malha>(obj2, Cor(94,75,0));
     estrela->atualizar_pontos(matriz_escala(Vetor(0.2, 0.2, 0.2)));
+    estrela->atualizar_pontos(matriz_reflexao('x', 'y'));
     estrela->atualizar_pontos(matriz_translacao(Ponto(-9.0, 13.2, -20.0)));
     world.add(estrela);
 

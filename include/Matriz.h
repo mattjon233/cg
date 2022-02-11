@@ -38,139 +38,23 @@ class Matriz {
             val[3][3] = x33;
         }
 
-        void mostrar(void) {
-            for (int i=0; i < 4; i++) {
-                for (int j=0; j < 4; j++) {
-                    cout << val[i][j] << ' ';
-                }
-                cout << endl;
-            }
-        }
-
     public:
         float val[4][4];
         Ponto C0, C1, C2, C3;
 };
 
-/**
- * @brief dado a base (i,j,k) e ponto origem da camera, retorna matriz transformacao das coordenadas de camera para mundo/cenario
-*/
 Matriz coordenadas_cpm(Vetor i, Vetor j, Vetor k, Ponto o);
 
-/**
- * @brief dado a base (i,j,k) e ponto origem da camera, retorna matriz transformacao das coordenadas de mundo/cenario para camera 
-*/
 Matriz coordenadas_mpc(Vetor i, Vetor j, Vetor w, Ponto o);
 
-/**
- * Rot x graus em torno do eixo z
- * | cos(x)  -sen(x)   0    0 |
- * | sen(x)   cos(x)   0    0 |
- * |   0        0      1    0 |
- * |   0        0      0    1 |
- * 
- * Rot x graus em torno do eixo x
- * | 1    0         0     0 |
- * | 0  cos(x)  -sen(x)   0 |
- * | 0  sen(x)   cos(x)   0 |
- * | 0    0         0     1 |
- * 
- * Rot x graus em torno do eixo y
- * |  cos(x)   0   sen(x)  0 |
- * |    0      1     0     0 |
- * | -sen(x)   0   cos(x)  0 |
- * |   0       0     0     1 |
- * 
- * TODO: parametro de tipo objeto, fazendo com que todos os seus vertices sejam rotacionados
-*/
 Matriz matriz_rotacao(float graus, char eixo);
 
- /**
- * Matriz (diagonal) E de escala com fator S = Tfinal/Tincial
- * | Sx  0   0   0 |
- * | 0   Sy  0   0 |
- * | 0   0   Sz  0 |
- * | 0   0   0   1 |
- *
-*/  
 Matriz matriz_escala(Vetor S);
- 
-/** Matriz escala em ponto fixo P
- * | Sx  0   0   (1-Sx)*Px |
- * | 0   Sy  0   (1-Sy)*Py |
- * | 0   0   Sz  (1-Sz)*Pz |
- * | 0   0   0        1    |
- *
-*/  
-Matriz matriz_escala(Vetor S, Ponto P);
 
- /**
- * Translação com vetor t = P'-P. Logo: P' = P + t
- * | 1  0  0  tx |
- * | 0  1  0  ty |
- * | 0  0  1  tz |
- * | 0  0  0  1  |
-*/
 Matriz matriz_translacao(Vetor t);
 
- /**
- * Plano XY, direção X, angulo a
- * | 1 tg(a) 0  0 |
- * | 0   1   0  0 |
- * | 0   0   1  0 |
- * | 0   0   0  1 |
- * 
- * Plano XY, direção Y, angulo a
- * | 1    0  0  0 |
- * |tg(a) 1  0  0 |
- * | 0    0  1  0 |
- * | 0    0  0  1 |
- * 
- * Plano XZ, direção X, angulo a
- * | 1  0  tg(a)  0 |
- * | 0  1    0    0 |
- * | 0  0    1    0 |
- * | 0  0    0    1 |
- * 
- * Plano XZ, direção Z, angulo a
- * | 1     0  0  0 |
- * | 0     1  0  0 |
- * | tg(a) 0  1  0 |
- * | 0     0  0  1 |
- * 
- * Plano YZ, direção Y, angulo a
- * | 1  0  0    0 |
- * | 0  1 tg(a) 0 |
- * | 0  0  1    0 |
- * | 0  0  0    1 |
- * 
- * Plano YZ, direção Z, angulo a
- * | 1    0   0  0 |
- * | 0    1   0  0 |
- * | 0  tg(a) 1  0 |
- * | 0    0   0  1 |
-*/
 Matriz matriz_cisalhamento(char e_1, char e_2, char d, float graus);
 
- /**
- * Plano YZ
- * |-1  0  0  0 |
- * | 0  1  0  0 |
- * | 0  0  1  0 |
- * | 0  0  0  1 |
- * 
- * Plano XZ
- * | 1  0  0  0 |
- * | 0 -1  0  0 |
- * | 0  0  1  0 |
- * | 0  0  0  1 |
- * 
- * Plano XY
- * | 1  0  0  0 |
- * | 0  1  0  0 |
- * | 0  0 -1  0 |
- * | 0  0  0  1 |
-*/
 Matriz matriz_reflexao(char e_1, char e_2);
 
 /* Matriz reflexao no qual n eh perpendicular/normal ao plano */

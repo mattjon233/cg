@@ -19,6 +19,8 @@ bool Esfera::intersectar(const Raio& r,  float t_min, float t_max, PontoColisao&
     ptcol.pt = r.para(t_int_mp);
     ptcol.normal = (ptcol.pt - _centro) / _raio;
     ptcol.cor = _cor;
+    // ptcol.cor_especular = _cor_difusa;
+    // ptcol.cor_difusa = _cor_especular;
     ptcol.dr = r.direcao();
     ptcol.m = 1;
 

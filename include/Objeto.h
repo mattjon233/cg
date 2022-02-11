@@ -11,6 +11,8 @@ struct PontoColisao {
     float m;
     float t_int;
     Cor cor;
+    // Cor cor_difusa;
+    // Cor cor_especular;
 };
 
 class Objeto {

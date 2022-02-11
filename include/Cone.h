@@ -4,23 +4,41 @@
 #include "Objeto.h"
 #include "Vetor.h"
 #include "Matriz.h"
- 
 #include <vector>
 
 using std::vector;
 
 class Cone : public Objeto {
     public:
-        /*dc = (V-C) / ||V-C||
-          h  = ||V-C||
-        */
         Cone() {};
 
-        Cone(Ponto cen, float r, Vetor dir, float alt) : _centro(cen), _raio(r), _direcao(dir), _altura(alt), _cor(0, 0, 0) {
+        Cone(Ponto cen, float r, Vetor dir, float alt) 
+        : _centro(cen)
+        , _raio(r)
+        , _direcao(dir)
+        , _altura(alt)
+        , _cor(0, 0, 0) {
             atualizar_vertice();
         };
 
-        Cone(Ponto cen, float r, Vetor dir, float alt, Cor cor) : _centro(cen), _raio(r), _direcao(dir), _altura(alt), _cor(cor/255) {
+        // Cone(Ponto cen, float r, Vetor dir, float alt, Cor cor, Cor cor_difusa, Cor cor_especular) 
+        // : _centro(cen)
+        // , _raio(r)
+        // , _direcao(dir)
+        // , _altura(alt)
+        // , _cor(cor/255f) 
+        // , _cor_difusa(cor_difusa/255.0f)
+        // , _cor_especular(cor_especular/255.0f) {
+        //     atualizar_vertice();
+        // };
+
+
+        Cone(Ponto cen, float r, Vetor dir, float alt, Cor cor) 
+        : _centro(cen)
+        , _raio(r)
+        , _direcao(dir)
+        , _altura(alt)
+        , _cor(cor/255.0f) {
             atualizar_vertice();
         };
 
@@ -40,6 +58,8 @@ class Cone : public Objeto {
         Vetor _direcao;
         float   _altura;
         Cor   _cor;
+        // Cor _cor_difusa;
+        // Cor _cor_especular;
         Ponto _vertice;
 };
 

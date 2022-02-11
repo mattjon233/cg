@@ -7,9 +7,14 @@ Cor LuzDirecional::luminancia(PontoColisao& ptcol) const {
     auto r = reflexo(l, n);
     auto m = ptcol.m;
     auto Ko = ptcol.cor;
+    // auto Kd = ptcol.cor_difusa;
+    // auto Ks = ptcol.cor_especular;
     
+    auto If = _intensidade;
+
     auto ftd = fd(n, l);
     auto fts = fs(r, v, m);
 
-return _intensidade*Ko*ftd + _intensidade*Ko*fts;
+    // return If*Kd*ftd + If*Ks*fts + If*Ko;
+    return If*Ko*ftd + If*Ko*fts;
 }

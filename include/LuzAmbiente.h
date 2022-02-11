@@ -19,6 +19,7 @@ class LuzAmbiente : public Luz {
         virtual Ponto posicao(void) const override { return Vetor(0, 0, 0, 1); };
     
     public:
+        Ponto _p0;
         Cor _intensidade;
 };
 

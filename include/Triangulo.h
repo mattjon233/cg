@@ -13,11 +13,20 @@ class Triangulo : public Objeto {
     public:
         Triangulo() {};
 
-        Triangulo(Ponto vert1,Ponto vert2, Ponto vert3) : _vertice1(vert1), _vertice2(vert2), _vertice3(vert3), _cor(0, 0, 0) {
+        Triangulo(Ponto vert1,Ponto vert2, Ponto vert3)
+        : _vertice1(vert1)
+        , _vertice2(vert2)
+        , _vertice3(vert3)
+        , _cor(0, 0, 0) {
             atualizar_propriedades();
         };
 
-        Triangulo(Ponto vert1,Ponto vert2, Ponto vert3, Cor cor) : _vertice1(vert1), _vertice2(vert2), _vertice3(vert3), _cor((cor * (1.0/255.0))) {
+        Triangulo(Ponto vert1,Ponto vert2, Ponto vert3, Cor cor)
+        : _vertice1(vert1)
+        , _vertice2(vert2)
+        , _vertice3(vert3)
+        , _cor((cor * (1.0/255.0f))) {
+
             atualizar_propriedades();
         };
 

@@ -48,13 +48,6 @@ Matriz matriz_escala(Vetor S) {
                   0,     0,     0,     1);
 }
 
-Matriz matriz_escala(Vetor S, Ponto P) {
-    return Matriz(S.x(), 0,     0,     (1-S.x())*P.x(),
-                  0,     S.y(), 0,     (1-S.y())*P.y(),
-                  0,     0,     S.z(), (1-S.z())*P.z(),
-                  0,     0,     0,     1);
-}
-
 Matriz matriz_translacao(Vetor t) {
     return Matriz(1, 0, 0, t.x(),
                   0, 1, 0, t.y(),
