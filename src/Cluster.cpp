@@ -35,10 +35,9 @@ void Cluster::configurar() {
 }
 
 bool Cluster::intersectar(const Raio& r, float t_min, float t_max, PontoColisao& ptcol) const {
-        /* P0 - Cc */
     auto w = r.origem()-_base;
 
-    /* valores auxiliares */
+    // valores auxiliares
     auto dr_dc = produto_escalar(r.direcao(), _direcao);
     auto w_w = produto_escalar(w, w);
     auto w_dr = produto_escalar(w, r.direcao());
@@ -50,7 +49,7 @@ bool Cluster::intersectar(const Raio& r, float t_min, float t_max, PontoColisao&
 
     auto delta = pow(b,2) - a*c;
 
-    /* sem interseccao */
+    // sem intersecção
     if (delta < 0) return false;
 
     float t_int;

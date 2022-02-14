@@ -37,7 +37,8 @@ void construir_chao(Cenario &world, string obj) {
 void consturir_nave(Cenario &world) {
     shared_ptr<Cone> nave = make_shared<Cone>(Ponto(9.0, 12.0, -20.0, 1), 5, Vetor(0.2, 1, 0), 4.0, Cor(154,154,154));    
     shared_ptr<Cone> nave2 = make_shared<Cone>(Ponto(9.0, 11.8, -20.0, 1), 3.8, Vetor(0.2, 1, 0), 4.0, Cor(192,192,192));    
-
+    // nave->atualizar_pontos(matriz_rotacao(5.5, 'x'));
+    // nave2->atualizar_pontos(matriz_rotacao(5.5, 'x'));
     world.add(nave);
     world.add(nave2);
 
@@ -143,7 +144,6 @@ int main(int argc, char **argv) {
     glutDisplayFunc(display);
 
     Ponto window_pts;
-    // y,x = mexer no janela pts = achata a visão 
     if (camera_tipo == 1) window_pts = Ponto(1.2, 1.2, -1, 1);
     else  window_pts = Ponto(23, 23, -1, 1);
 
@@ -176,7 +176,6 @@ int main(int argc, char **argv) {
 
     // -------------------------------------- LUZES -------------------------------------- //
 
-    /* adicionando as luzes */
     Luzes luzes;
 
     // luz da estrela (sol) abaixo do horizonte
@@ -188,6 +187,8 @@ int main(int argc, char **argv) {
 
     // luz da nave et
     luzes.add(make_shared<LuzSpot>(Ponto(9, 10, -20.0, 1), Vetor(0, -1, 0), 0.001, 45, Cor(0.25, 0.25, 0.25)));
+
+    // -------------------------------------- CANVAS -------------------------------------- //
 
     int camera_girar = 0;
     if (camera_girar == 1) {
