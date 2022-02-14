@@ -115,6 +115,7 @@ float windowWidth  = 400.0;
 float windowHeight = 400.0;
 Cor *canvas;
 
+//funçao que lida com o opengl
 void display() {
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -123,8 +124,8 @@ void display() {
     glutPostRedisplay();
 }
 
-// 0,0 = arvore 3d, chao 2d, perto (ortogonal)
-// 1,0 = cenario 3d frente (perspectiva)
+// 0 = ortogonal
+// 1 = perspectiva
 int camera_tipo = 1;
 
 int main(int argc, char **argv) {
@@ -144,9 +145,12 @@ int main(int argc, char **argv) {
     glutDisplayFunc(display);
 
     Ponto window_pts;
-    if (camera_tipo == 1) window_pts = Ponto(1.2, 1.2, -1, 1);
-    else  window_pts = Ponto(23, 23, -1, 1);
-
+    if (camera_tipo == 1) {
+        window_pts = Ponto(1.2, 1.2, -1, 1);
+    }
+    else  {
+        window_pts = Ponto(23, 23, -1, 1);
+    }
 
     int x = 0;
     int y = 4;
